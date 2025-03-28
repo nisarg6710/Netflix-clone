@@ -17,8 +17,9 @@ export async function addTowatchList(formData: FormData) {
             userId: session?.user?.email as string,
             movieId: Number(movieId)
         },
+        
     });
-
+return data;
     revalidatePath(pathname);
 }
 
@@ -28,11 +29,12 @@ export async function deleteFromWatchlist(formData: FormData){
 
     const watchlistId = formData.get('watchlistId') as string;
     const pathname = formData.get("pathname") as string;
+
     const data = await prisma.watchList.delete({
         where: {
             id: watchlistId
         },
     });
-
+return data;
     revalidatePath(pathname);
 }
